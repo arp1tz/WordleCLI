@@ -1,5 +1,9 @@
+const chalk = require("chalk");
 const readline = require("readline-sync");
 const words = require("./words");
+console.log(chalk.blue("===================="));
+console.log(chalk.green("     CLI WORDLE"));
+console.log(chalk.blue("===================="));
 
 const randomIndex = Math.floor(Math.random() * words.length);
 
@@ -16,15 +20,15 @@ while(attempts>0) {
 for (let i = 0; i < 5; i++) {
 
     if (guess[i] === secretWord[i]) {
-        result += "🟩";
+        result += chalk.green("🟩");
     }
 
     else if (secretWord.includes(guess[i])) {
-        result += "🟨";
+        result += chalk.yellow("🟨");
     }
 
     else {
-        result += "🟫";
+        result += chalk.gray("🟫");
     }
 }
  console.log(result);
@@ -32,13 +36,19 @@ for (let i = 0; i < 5; i++) {
     console.log("Attempts Left:", attempts);
 
 if (guess == secretWord) {
-    console.log("YOU WIN! :3");
+    console.log(chalk.green("YOU WIN! :3"));
     break;
 }
    
 }
 
 if(attempts==0) {
-    console.log("YOU LOST :(");
-    console.log("The words was:", secretWord);
+    console.log(chalk.red("YOU LOST :("));
+    console.log(chalk.red("The word was:"), secretWord);
+}
+
+let playAgain = readline.question("Play again? (y/n): ");
+
+if (playAgain =="y") {
+  
 }
