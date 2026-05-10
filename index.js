@@ -1,6 +1,7 @@
 const chalk = require("chalk");
 const readline = require("readline-sync");
 const fs = require("fs");
+let playAgain = "y";
 
 const solutions = fs
   .readFileSync("solutions.txt", "utf8")
@@ -12,7 +13,9 @@ const dictionary = fs
   .split("\n")
   .map(word => word.trim().toLowerCase());
 
+while(playAgain === "y") {
 
+let history = [];
 console.log(chalk.blue("===================="));
 console.log(chalk.green("     CLI WORDLE"));
 console.log(chalk.blue("===================="));
@@ -56,7 +59,16 @@ for (let i = 0; i < 5; i++) {
         result += chalk.gray("🟫");
     }
 }
- console.log(result);
+ console.clear();
+ console.log(chalk.blue("--------------------"));
+ console.log(chalk.green("     CLI WORDLE"));
+ console.log(chalk.blue("--------------------"));
+ 
+ history.push(result);
+
+ for (let previousGuess of history) {
+    console.log(previousGuess);
+ }
 
 if (guess == secretWord) {
     won = true;
@@ -73,8 +85,10 @@ if(attempts==0 && !won) {
     console.log(chalk.red("The word was:"), secretWord);
 }
 
-let playAgain = readline.question("Play again? (y/n): ");
+playAgain = readline.question("Play again? (y/n): ");
 
 if (playAgain =="y") {
   
+}
+
 }
