@@ -1,0 +1,10 @@
+apple
+water
+light
+flame
+stone
+chair
+smile
+track
+crane
+grape

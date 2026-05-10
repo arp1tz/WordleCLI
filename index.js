@@ -1,31 +1,46 @@
 const chalk = require("chalk");
 const readline = require("readline-sync");
-const fs = require("fs"); 
-const words = fs
-  .readFileSync("words.txt", "utf8")
+const fs = require("fs");
+
+const solutions = fs
+  .readFileSync("solutions.txt", "utf8")
   .split("\n")
   .map(word => word.trim().toLowerCase());
 
-console.log(words);
+const dictionary = fs
+  .readFileSync("dictionary.txt", "utf8")
+  .split("\n")
+  .map(word => word.trim().toLowerCase());
+
+
 console.log(chalk.blue("===================="));
 console.log(chalk.green("     CLI WORDLE"));
 console.log(chalk.blue("===================="));
 
-const randomIndex = Math.floor(Math.random() * words.length);
+const randomIndex = Math.floor(Math.random() * solutions.length);
 
-const secretWord = words[randomIndex];
+const secretWord = solutions[randomIndex];
 let attempts = 6;
+
+
+let won = false;
 
 while(attempts>0) {
     let guess = readline.question("Enter your guess: ");
 
     guess = guess.toLowerCase();
 
-    if (!words.includes(guess)) {
+if (guess.length !== 5) {
+    console.log(chalk.red("❌ Word must be 5 letters!"));
+    continue;
+}
+
+if (!dictionary.includes(guess)) {
     console.log(chalk.red("❌ Invalid word!"));
     continue;
 }
-    let result = "";
+
+let result = "";
 
 for (let i = 0; i < 5; i++) {
 
@@ -42,17 +57,18 @@ for (let i = 0; i < 5; i++) {
     }
 }
  console.log(result);
-    attempts--;
-    console.log("Attempts Left:", attempts);
 
 if (guess == secretWord) {
+    won = true;
     console.log(chalk.green("YOU WIN! :3"));
     break;
 }
+  attempts--;
+    console.log("Attempts Left:", attempts);
    
 }
 
-if(attempts==0) {
+if(attempts==0 && !won) {
     console.log(chalk.red("YOU LOST :("));
     console.log(chalk.red("The word was:"), secretWord);
 }

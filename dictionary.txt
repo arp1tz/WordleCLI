@@ -1,0 +1,15 @@
+apple
+water
+light
+flame
+stone
+chair
+smile
+track
+crane
+grape
+adieu
+stair
+piano
+hello
+world
