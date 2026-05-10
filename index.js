@@ -1,3 +1,4 @@
+const figlet = require("figlet");
 const chalk = require("chalk");
 const readline = require("readline-sync");
 const fs = require("fs");
@@ -16,9 +17,11 @@ const dictionary = fs
 while(playAgain === "y") {
 
 let history = [];
-console.log(chalk.blue("===================="));
-console.log(chalk.green("     CLI WORDLE"));
-console.log(chalk.blue("===================="));
+console.log(
+    chalk.green(
+        figlet.textSync("WORDLE")
+    )
+);
 
 const randomIndex = Math.floor(Math.random() * solutions.length);
 
@@ -60,15 +63,16 @@ for (let i = 0; i < 5; i++) {
     }
 }
  console.clear();
- console.log(chalk.blue("--------------------"));
- console.log(chalk.green("     CLI WORDLE"));
- console.log(chalk.blue("--------------------"));
+console.log(
+    chalk.green(
+        figlet.textSync("WORDLE")
+    )
+);
  
  history.push(result);
 
  for (let previousGuess of history) {
     console.log(previousGuess);
-    console.log();
  }
 
 if (guess == secretWord) {
