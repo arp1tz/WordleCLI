@@ -68,20 +68,20 @@ for (let i = 0; i < 5; i++) {
 
  for (let previousGuess of history) {
     console.log(previousGuess);
+    console.log();
  }
 
 if (guess == secretWord) {
     won = true;
-    console.log(chalk.green("YOU WIN! :3"));
+    console.log(chalk.green("YAY!, YOU WIN! :3"));
     break;
 }
   attempts--;
-    console.log("Attempts Left:", attempts);
-   
+    console.log(chalk.cyan(`Attempts Left: ${attempts}`));   
 }
 
 if(attempts==0 && !won) {
-    console.log(chalk.red("YOU LOST :("));
+    console.log(chalk.red("\n💀 uhmmm, YOU LOST :("));
     console.log(chalk.red("The word was:"), secretWord);
 }
 
