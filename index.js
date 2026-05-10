@@ -14,13 +14,46 @@ const dictionary = fs
   .split("\n")
   .map(word => word.trim().toLowerCase());
 
+  let keyboardState = {};
+
+function colorLetter(letter) {
+
+    let state = keyboardState[letter.toLowerCase()];
+
+    if (state === "green") {
+        return chalk.green(letter);
+    }
+
+    if (state === "yellow") {
+        return chalk.yellow(letter);
+    }
+
+    if (state === "gray") {
+        return chalk.gray(letter);
+    }
+
+    return letter;
+}
+
 while(playAgain === "y") {
 
+keyboardState = {};
 let history = [];
 console.log(
     chalk.green(
         figlet.textSync("WORDLE")
     )
+);
+console.log(
+`       ${colorLetter("Q")} ${colorLetter("W")} ${colorLetter("E")} ${colorLetter("R")} ${colorLetter("T")} ${colorLetter("Y")} ${colorLetter("U")} ${colorLetter("I")} ${colorLetter("O")} ${colorLetter("P")}`
+);
+
+console.log(
+`        ${colorLetter("A")} ${colorLetter("S")} ${colorLetter("D")} ${colorLetter("F")} ${colorLetter("G")} ${colorLetter("H")} ${colorLetter("J")} ${colorLetter("K")} ${colorLetter("L")}`
+);
+
+console.log(
+`          ${colorLetter("Z")} ${colorLetter("X")} ${colorLetter("C")} ${colorLetter("V")} ${colorLetter("B")} ${colorLetter("N")} ${colorLetter("M")}`
 );
 
 const randomIndex = Math.floor(Math.random() * solutions.length);
@@ -52,21 +85,43 @@ for (let i = 0; i < 5; i++) {
 
     if (guess[i] === secretWord[i]) {
         result += chalk.green("🟩");
+        keyboardState[guess[i]] = "green";
     }
 
     else if (secretWord.includes(guess[i])) {
         result += chalk.yellow("🟨");
+        if (keyboardState[guess[i]] !== "green") {
+    keyboardState[guess[i]] = "yellow";
+}
     }
 
     else {
         result += chalk.gray("🟫");
+        if (
+    keyboardState[guess[i]] !== "green" &&
+    keyboardState[guess[i]] !== "yellow"
+) {
+    keyboardState[guess[i]] = "gray";
+}
     }
 }
  console.clear();
-console.log(
+ console.log(
     chalk.green(
         figlet.textSync("WORDLE")
     )
+);
+
+ console.log(
+`       ${colorLetter("Q")} ${colorLetter("W")} ${colorLetter("E")} ${colorLetter("R")} ${colorLetter("T")} ${colorLetter("Y")} ${colorLetter("U")} ${colorLetter("I")} ${colorLetter("O")} ${colorLetter("P")}`
+);
+
+console.log(
+`        ${colorLetter("A")} ${colorLetter("S")} ${colorLetter("D")} ${colorLetter("F")} ${colorLetter("G")} ${colorLetter("H")} ${colorLetter("J")} ${colorLetter("K")} ${colorLetter("L")}`
+);
+
+console.log(
+`          ${colorLetter("Z")} ${colorLetter("X")} ${colorLetter("C")} ${colorLetter("V")} ${colorLetter("B")} ${colorLetter("N")} ${colorLetter("M")}`
 );
  
  history.push(result);
