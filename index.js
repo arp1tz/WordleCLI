@@ -1,6 +1,12 @@
 const chalk = require("chalk");
 const readline = require("readline-sync");
-const words = require("./words");
+const fs = require("fs"); 
+const words = fs
+  .readFileSync("words.txt", "utf8")
+  .split("\n")
+  .map(word => word.trim().toLowerCase());
+
+console.log(words);
 console.log(chalk.blue("===================="));
 console.log(chalk.green("     CLI WORDLE"));
 console.log(chalk.blue("===================="));
@@ -15,6 +21,10 @@ while(attempts>0) {
 
     guess = guess.toLowerCase();
 
+    if (!words.includes(guess)) {
+    console.log(chalk.red("❌ Invalid word!"));
+    continue;
+}
     let result = "";
 
 for (let i = 0; i < 5; i++) {
