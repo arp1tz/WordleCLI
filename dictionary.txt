@@ -13,3 +13,7 @@ stair
 piano
 hello
 world
+lemon
+stair
+pudgy
+crane
