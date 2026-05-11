@@ -1,7 +1,11 @@
 const figlet = require("figlet");
-const chalk = require("chalk");
+
 const readline = require("readline-sync");
+
+const chalk = require("chalk");
+
 const fs = require("fs");
+
 let playAgain = "y";
 
 const solutions = fs
@@ -147,7 +151,6 @@ if(attempts==0 && !won) {
 playAgain = readline.question("Play again? (y/n): ");
 
 if (playAgain =="y") {
-  
-}
 
+}
 }
