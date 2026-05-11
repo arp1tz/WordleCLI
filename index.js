@@ -6,7 +6,7 @@ const chalk = require("chalk");
 
 const fs = require("fs");
 
-let playAgain = "y";
+let playAgain = "yes";
 
 const solutions = fs
   .readFileSync("solutions.txt", "utf8")
@@ -148,9 +148,9 @@ if(attempts==0 && !won) {
     console.log(chalk.red("The word was:"), secretWord);
 }
 
-playAgain = readline.question("Play again? (y/n): ");
+playAgain = readline.question("Play again? (yes/no): ");
 
-if (playAgain =="y") {
+if (playAgain =="yes") {
 
 }
 }
