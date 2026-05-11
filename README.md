@@ -32,3 +32,49 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/cli-wordle.git
+
+Go into the project folder:
+cd cli-wordle
+
+Install dependencies:
+npm install
+
+▶ Run the Game
+node index.js
+
+ Built With
+JavaScript
+Node.js
+Chalk
+Figlet
+readline-sync
+
+ How To Play
+Guess the hidden 5-letter word.
+You have 6 attempts.
+Color meanings:
+🟩 Correct letter in correct position
+🟨 Correct letter in wrong position
+🟫 Letter not in the word
+
+
+📂 Project Structure
+cli-wordle/
+│
+├── index.js
+├── dictionary.txt
+├── solutions.txt
+├── package.json
+├── README.md
+└── screenshots/
+
+Future Improvements
+Daily Challenge Mode
+Difficulty Modes
+Better Duplicate Letter Logic
+Statistics System
+Terminal Animations
+Sound Effects
+
+Author
+arput (afk)
