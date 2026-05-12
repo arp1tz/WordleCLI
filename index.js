@@ -6,17 +6,20 @@ const chalk = require("chalk");
 
 const fs = require("fs");
 
-let playAgain = "yes";
-
+let playAgain = "y";
 const solutions = fs
   .readFileSync("solutions.txt", "utf8")
+  .replace(/\r/g, "")
   .split("\n")
-  .map(word => word.trim().toLowerCase());
+  .map(word => word.trim().toLowerCase())
+  .filter(word => /^[a-z]{5}$/.test(word));
 
 const dictionary = fs
   .readFileSync("dictionary.txt", "utf8")
+  .replace(/\r/g, "")
   .split("\n")
-  .map(word => word.trim().toLowerCase());
+  .map(word => word.trim().toLowerCase())
+  .filter(word => /^[a-z]{5}$/.test(word));
 
   let keyboardState = {};
 
@@ -148,9 +151,9 @@ if(attempts==0 && !won) {
     console.log(chalk.red("The word was:"), secretWord);
 }
 
-playAgain = readline.question("Play again? (yes/no): ");
+playAgain = readline.question("Play again? (y/n): ");
 
-if (playAgain =="yes") {
+if (playAgain =="y") {
 
 }
 }
