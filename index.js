@@ -87,23 +87,27 @@ if (!dictionary.includes(guess)) {
 }
 
 let result = "";
+let coloredGuess = "";
 
 for (let i = 0; i < 5; i++) {
 
     if (guess[i] === secretWord[i]) {
         result += chalk.green("🟩");
         keyboardState[guess[i]] = "green";
+        coloredGuess += chalk.green(guess[i].toUpperCase());
     }
 
     else if (secretWord.includes(guess[i])) {
         result += chalk.yellow("🟨");
         if (keyboardState[guess[i]] !== "green") {
     keyboardState[guess[i]] = "yellow";
+    coloredGuess += chalk.yellow(guess[i].toUpperCase());
 }
     }
 
     else {
         result += chalk.gray("🟫");
+        coloredGuess += chalk.gray(guess[i].toUpperCase());
         if (
     keyboardState[guess[i]] !== "green" &&
     keyboardState[guess[i]] !== "yellow"
@@ -131,9 +135,8 @@ console.log(
 `          ${colorLetter("Z")} ${colorLetter("X")} ${colorLetter("C")} ${colorLetter("V")} ${colorLetter("B")} ${colorLetter("N")} ${colorLetter("M")}`
 );
  
-history.push(
-    `${guess.toUpperCase().padEnd(8)} ${result}`
-);
+
+history.push(`${coloredGuess.padEnd(15)} ${result}`);
  for (let previousGuess of history) {
     console.log(previousGuess);
  }
