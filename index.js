@@ -131,8 +131,9 @@ console.log(
 `          ${colorLetter("Z")} ${colorLetter("X")} ${colorLetter("C")} ${colorLetter("V")} ${colorLetter("B")} ${colorLetter("N")} ${colorLetter("M")}`
 );
  
-history.push(`${guess.toUpperCase()}  ${result}`);
-
+history.push(
+    `${guess.toUpperCase().padEnd(8)} ${result}`
+);
  for (let previousGuess of history) {
     console.log(previousGuess);
  }
